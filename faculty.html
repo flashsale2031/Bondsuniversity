@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Meet the faculty at Bonds University." />
+  <title>Faculty | Bonds University</title>
+  <style>
+    :root { --navy:#102a43; --blue:#2563eb; --light:#f4f7fb; --text:#243b53; --muted:#627d98; --white:#fff; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; background:var(--light); color:var(--text); line-height:1.6; }
+    header { background:linear-gradient(135deg,var(--navy),#1e4e8c); color:var(--white); padding:24px 6%; }
+    nav { display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+    .brand { color:#fff; text-decoration:none; font-size:1.35rem; font-weight:700; }
+    nav ul { display:flex; gap:18px; list-style:none; padding:0; margin:0; flex-wrap:wrap; }
+    nav a { color:#fff; text-decoration:none; font-weight:600; }
+    .hero { max-width:1100px; margin:0 auto; padding:55px 6%; text-align:center; }
+    .hero h1 { font-size:clamp(2rem,5vw,3.3rem); margin:0 0 12px; }
+    .hero p { max-width:700px; margin:auto; color:#e6efff; }
+    main { max-width:1100px; margin:0 auto; padding:35px 6% 65px; }
+    .toolbar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:28px; }
+    input, select { flex:1; min-width:210px; padding:13px 14px; border:1px solid #cbd5e1; border-radius:10px; font:inherit; background:#fff; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px; }
+    .card { background:var(--white); border-radius:16px; padding:24px; box-shadow:0 8px 24px rgba(16,42,67,.08); border:1px solid #e5edf5; }
+    .avatar { width:76px; height:76px; display:grid; place-items:center; border-radius:50%; background:#dbeafe; color:var(--blue); font-size:1.4rem; font-weight:700; margin-bottom:15px; }
+    .card h2 { margin:0 0 4px; font-size:1.2rem; }
+    .role { color:var(--blue); font-weight:700; margin:0 0 12px; }
+    .card p { color:var(--muted); margin:0; }
+    footer { text-align:center; padding:25px 6%; background:var(--navy); color:#d9e7f7; }
+    @media (max-width:600px) { nav { align-items:flex-start; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="brand" href="index.html">Bonds University</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="faculty.html" aria-current="page">Faculty</a></li>
+      </ul>
+    </nav>
+    <section class="hero">
+      <h1>Meet Our Faculty</h1>
+      <p>Explore the educators, mentors, and academic leaders supporting the Bonds University learning community.</p>
+    </section>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search faculty by name or specialty..." aria-label="Search faculty" />
+      <select id="department" aria-label="Filter by department">
+        <option value="all">All departments</option>
+        <option value="technology">Technology</option>
+        <option value="business">Business</option>
+        <option value="design">Design</option>
+      </select>
+    </div>
+
+    <section class="grid" id="facultyGrid" aria-live="polite">
+      <article class="card" data-department="technology" data-search="maya thompson computer science artificial intelligence">
+        <div class="avatar">MT</div><h2>Dr. Maya Thompson</h2><p class="role">Professor of Computer Science</p><p>Focuses on software engineering, artificial intelligence, and practical technology education.</p>
+      </article>
+      <article class="card" data-department="business" data-search="jordan lee business leadership entrepreneurship">
+        <div class="avatar">JL</div><h2>Jordan Lee, MBA</h2><p class="role">Lecturer in Business Leadership</p><p>Guides students through entrepreneurship, leadership strategy, and organizational growth.</p>
+      </article>
+      <article class="card" data-department="design" data-search="alex rivera digital design ux visual communication">
+        <div class="avatar">AR</div><h2>Alex Rivera</h2><p class="role">Senior Design Instructor</p><p>Teaches user experience, visual communication, and creative problem-solving methods.</p>
+      </article>
+      <article class="card" data-department="technology" data-search="samir patel data science analytics programming">
+        <div class="avatar">SP</div><h2>Dr. Samir Patel</h2><p class="role">Associate Professor of Data Science</p><p>Explores data analytics, programming, and responsible data-driven decision-making.</p>
+      </article>
+      <article class="card" data-department="business" data-search="natalie brooks finance marketing business">
+        <div class="avatar">NB</div><h2>Natalie Brooks</h2><p class="role">Business Faculty Fellow</p><p>Supports learning in marketing, finance fundamentals, and applied business planning.</p>
+      </article>
+      <article class="card" data-department="design" data-search="chris morgan media design branding illustration">
+        <div class="avatar">CM</div><h2>Chris Morgan</h2><p class="role">Instructor of Digital Media</p><p>Helps students build skills in branding, illustration, and digital media production.</p>
+      </article>
+    </section>
+    <p id="empty" hidden>No faculty members match your search.</p>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Bonds University. Sample faculty profiles for demonstration.</footer>
+  <script>
+    const search = document.getElementById('search');
+    const department = document.getElementById('department');
+    const cards = [...document.querySelectorAll('.card')];
+    const empty = document.getElementById('empty');
+    function filterFaculty() {
+      const term = search.value.toLowerCase().trim();
+      const selected = department.value;
+      let visible = 0;
+      cards.forEach(card => {
+        const matchesText = card.dataset.search.includes(term);
+        const matchesDepartment = selected === 'all' || card.dataset.department === selected;
+        const show = matchesText && matchesDepartment;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      empty.hidden = visible !== 0;
+    }
+    search.addEventListener('input', filterFaculty);
+    department.addEventListener('change', filterFaculty);
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
