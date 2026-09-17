@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Track your degree program, requirements, and graduation progress at Bonds University." />
+  <title>My Degrees | Bonds University</title>
+  <style>
+    :root { --navy:#102a43; --navy-deep:#0b1f33; --blue:#2563eb; --blue-dark:#1e40af; --pale-blue:#dbeafe; --light:#f4f7fb; --text:#243b53; --muted:#627d98; --white:#fff; --border:#e5edf5; --green:#147d64; --green-bg:#d9f5ec; --gold:#9a6700; --gold-bg:#fff4cc; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; background:var(--light); color:var(--text); line-height:1.6; }
+    a { color:inherit; }
+    .container { width:min(1120px,88%); margin:0 auto; }
+    header { color:var(--white); background:linear-gradient(135deg,var(--navy),#1e4e8c); }
+    nav { width:min(1120px,88%); margin:0 auto; padding:24px 0; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+    .brand { color:var(--white); text-decoration:none; font-size:1.35rem; font-weight:700; }
+    nav ul { display:flex; gap:18px; list-style:none; padding:0; margin:0; flex-wrap:wrap; }
+    nav a { color:var(--white); text-decoration:none; font-weight:600; }
+    nav a:hover, nav a:focus-visible { color:#bfdbfe; }
+    nav a[aria-current="page"] { border-bottom:2px solid var(--white); padding-bottom:3px; }
+    .hero { padding:38px 0 48px; }
+    .hero h1 { font-size:clamp(2rem,4vw,3rem); margin:0 0 8px; }
+    .hero p { color:#e6efff; margin:0; font-size:1.08rem; }
+    main { padding:42px 0 70px; }
+    .card { background:var(--white); border:1px solid var(--border); border-radius:15px; box-shadow:0 8px 24px rgba(16,42,67,.06); }
+    .degree-overview { padding:28px; display:grid; grid-template-columns:1fr 200px; gap:30px; align-items:center; }
+    .eyebrow { color:var(--blue); font-size:.78rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .degree-overview h2 { color:var(--navy); font-size:1.65rem; margin:6px 0 3px; }
+    .degree-overview p { color:var(--muted); margin:0; }
+    .progress-label { display:flex; justify-content:space-between; color:var(--muted); font-size:.84rem; margin-top:20px; }
+    progress { width:100%; height:11px; accent-color:var(--blue); }
+    .completion { width:170px; height:170px; display:grid; place-items:center; border-radius:50%; background:conic-gradient(var(--blue) 0 40%,#e7eef8 40% 100%); position:relative; text-align:center; }
+    .completion::after { content:""; position:absolute; inset:13px; border-radius:50%; background:var(--white); }
+    .completion-content { position:relative; z-index:1; }
+    .completion strong { display:block; color:var(--navy); font-size:2rem; line-height:1.1; }
+    .completion span { color:var(--muted); font-size:.78rem; }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin:22px 0 34px; }
+    .stat { padding:18px 20px; }
+    .stat strong { display:block; color:var(--blue); font-size:1.65rem; }
+    .stat span { color:var(--muted); font-size:.86rem; }
+    .section-title { color:var(--navy); font-size:1.5rem; margin:0 0 17px; }
+    .requirements { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .requirement { padding:22px; }
+    .requirement-head { display:flex; justify-content:space-between; gap:12px; align-items:start; }
+    .requirement h3 { color:var(--navy); font-size:1.05rem; margin:0; }
+    .requirement-count { color:var(--green); background:var(--green-bg); border-radius:999px; padding:3px 9px; font-size:.76rem; font-weight:700; white-space:nowrap; }
+    .requirement p { color:var(--muted); margin:8px 0 14px; font-size:.9rem; }
+    .requirement progress { height:8px; }
+    .requirement.pending .requirement-count { color:var(--gold); background:var(--gold-bg); }
+    .timeline-section { margin-top:34px; }
+    .timeline { padding:24px; display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+    .milestone { position:relative; padding:0 14px 0 0; }
+    .milestone:not(:last-child)::after { content:""; position:absolute; top:13px; left:25px; right:0; height:2px; background:#b9d0ee; }
+    .dot { position:relative; z-index:1; width:27px; height:27px; display:grid; place-items:center; border-radius:50%; background:var(--green-bg); color:var(--green); font-size:.8rem; font-weight:700; }
+    .milestone.current .dot { background:var(--pale-blue); color:var(--blue-dark); box-shadow:0 0 0 4px #eff6ff; }
+    .milestone h3 { color:var(--navy); font-size:.92rem; margin:12px 0 2px; }
+    .milestone p { color:var(--muted); font-size:.8rem; margin:0; }
+    .actions { display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap; margin-top:30px; padding:22px 25px; background:#eaf2ff; border-radius:15px; }
+    .actions p { color:var(--text); margin:0; }
+    .button { display:inline-block; padding:10px 16px; border-radius:9px; background:var(--blue); color:var(--white); text-decoration:none; font-weight:700; }
+    .button:hover, .button:focus-visible { background:var(--blue-dark); }
+    .button.alt { background:var(--white); color:var(--blue-dark); }
+    footer { background:var(--navy-deep); color:#d9e7f7; text-align:center; padding:25px 6%; }
+    @media (max-width:800px) { .degree-overview { grid-template-columns:1fr; } .completion { width:140px; height:140px; margin:auto; } .requirements { grid-template-columns:1fr; } .timeline { grid-template-columns:1fr 1fr; gap:24px 10px; } .milestone:not(:last-child)::after { display:none; } }
+    @media (max-width:620px) { nav { align-items:flex-start; } .stats { grid-template-columns:1fr; } .timeline { grid-template-columns:1fr; } .degree-overview { padding:22px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="brand" href="index.html">Bonds University</a>
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="courses.html">Courses</a></li><li><a href="programs.html">Programs</a></li><li><a href="faculty.html">Faculty</a></li><li><a href="alumni.html">Alumni</a></li><li><a href="careers.html">Careers</a></li><li><a href="my-account.html">My Account</a></li><li><a href="my-degrees.html" aria-current="page">My Degrees</a></li>
+      </ul>
+    </nav>
+    <section class="hero container">
+      <h1>My Degrees</h1>
+      <p>Understand your requirements, plan your next term, and keep your graduation goal in sight.</p>
+    </section>
+  </header>
+
+  <main class="container">
+    <section class="card degree-overview" aria-labelledby="degree-title">
+      <div>
+        <span class="eyebrow">Active degree program</span>
+        <h2 id="degree-title">Bachelor of Science in Computer Science</h2>
+        <p>College of Technology · Expected graduation: May 2028</p>
+        <div class="progress-label"><span>Overall degree progress</span><strong>48 of 120 credits</strong></div>
+        <progress value="40" max="100">40%</progress>
+      </div>
+      <div class="completion" aria-label="40 percent degree completion"><div class="completion-content"><strong>40%</strong><span>complete</span></div></div>
+    </section>
+
+    <section class="stats" aria-label="Degree summary">
+      <div class="card stat"><strong>72</strong><span>Credits remaining</span></div>
+      <div class="card stat"><strong>3.64</strong><span>Cumulative GPA</span></div>
+      <div class="card stat"><strong>5</strong><span>Terms remaining</span></div>
+    </section>
+
+    <section aria-labelledby="requirements-title">
+      <h2 class="section-title" id="requirements-title">Degree requirements</h2>
+      <div class="requirements">
+        <article class="card requirement"><div class="requirement-head"><h3>University foundations</h3><span class="requirement-count">Complete</span></div><p>Writing, communication, quantitative reasoning, and civic learning.</p><progress value="100" max="100">100%</progress></article>
+        <article class="card requirement"><div class="requirement-head"><h3>Computer science core</h3><span class="requirement-count">In progress</span></div><p>Programming, systems, algorithms, and software engineering foundations.</p><progress value="58" max="100">58%</progress></article>
+        <article class="card requirement"><div class="requirement-head"><h3>Mathematics and science</h3><span class="requirement-count">In progress</span></div><p>Calculus, discrete mathematics, statistics, and laboratory science.</p><progress value="42" max="100">42%</progress></article>
+        <article class="card requirement pending"><div class="requirement-head"><h3>Concentration electives</h3><span class="requirement-count">Plan next</span></div><p>Choose a focus area and complete approved upper-level electives.</p><progress value="20" max="100">20%</progress></article>
+      </div>
+    </section>
+
+    <section class="timeline-section" aria-labelledby="timeline-title">
+      <h2 class="section-title" id="timeline-title">Your degree journey</h2>
+      <div class="card timeline">
+        <div class="milestone"><div class="dot">✓</div><h3>Foundations</h3><p>Completed Spring 2025</p></div>
+        <div class="milestone"><div class="dot">✓</div><h3>Core courses</h3><p>Completed Spring 2026</p></div>
+        <div class="milestone current"><div class="dot">→</div><h3>Intermediate study</h3><p>Current · Fall 2026</p></div>
+        <div class="milestone"><div class="dot">4</div><h3>Graduation</h3><p>Planned · May 2028</p></div>
+      </div>
+    </section>
+
+    <section class="actions" aria-label="Degree support actions">
+      <p><strong>Need help planning your next steps?</strong><br />Your academic advisor can review your requirements with you.</p>
+      <div><a class="button" href="mailto:advisor@bondsuniversity.example?subject=Degree%20planning%20appointment">Meet with my advisor</a> <a class="button alt" href="mailto:registrar@bondsuniversity.example?subject=Degree%20audit">Request degree audit</a></div>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Bonds University. Degree planning content for demonstration.</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
