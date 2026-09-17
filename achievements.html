@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements | Bonds University</title>
+  <style>
+    :root{--primary:#173b72;--accent:#f4b942;--bg:#f4f7fb;--text:#1f2937}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+    header{background:var(--primary);color:#fff;padding:18px 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    header h1{margin:0;font-size:1.4rem} nav a{color:#fff;text-decoration:none;margin:0 8px;font-size:.95rem}nav a:hover{color:var(--accent)}
+    .hero{background:#fff;padding:55px 6% 35px}.hero h2{margin:0 0 10px;color:var(--primary);font-size:2.3rem}.hero p{margin:0;color:#5b6472}
+    main{max-width:1200px;margin:auto;padding:30px 6%}.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-bottom:28px}
+    .stat,.achievement{background:#fff;border:1px solid #e5eaf2;border-radius:14px;padding:22px;box-shadow:0 5px 18px #173b7212}.stat strong{display:block;font-size:2rem;color:var(--primary)}.stat span{color:#667085}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}.achievement{text-align:center}.badge{font-size:2.7rem;margin-bottom:12px}.achievement h3{margin:0 0 10px;color:var(--primary)}.achievement p{color:#667085;line-height:1.5}.tag{display:inline-block;background:#fff4d6;color:#805b00;padding:6px 10px;border-radius:20px;font-size:.8rem;font-weight:bold}
+    footer{text-align:center;padding:28px;color:#667085;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bonds University</h1>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="courses.html">Courses</a><a href="programs.html">Programs</a><a href="my-courses.html">My Courses</a><a href="achievements.html" aria-current="page">Achievements</a><a href="enroll.html">Enroll</a>
+    </nav>
+  </header>
+  <section class="hero"><h2>My Achievements</h2><p>Celebrate your progress, milestones, and learning accomplishments.</p></section>
+  <main>
+    <section class="summary" aria-label="Achievement summary">
+      <div class="stat"><strong>12</strong><span>Achievements Earned</span></div><div class="stat"><strong>4</strong><span>Courses Completed</span></div><div class="stat"><strong>86%</strong><span>Average Progress</span></div>
+    </section>
+    <section class="grid" aria-label="Achievement badges">
+      <article class="achievement"><div class="badge">🏆</div><h3>First Steps</h3><p>Completed your first course and began your academic journey.</p><span class="tag">Earned</span></article>
+      <article class="achievement"><div class="badge">🎓</div><h3>Knowledge Builder</h3><p>Successfully completed four courses across different subjects.</p><span class="tag">Earned</span></article>
+      <article class="achievement"><div class="badge">⚡</div><h3>Fast Learner</h3><p>Maintained consistent learning activity and steady progress.</p><span class="tag">Earned</span></article>
+      <article class="achievement"><div class="badge">🌟</div><h3>Rising Scholar</h3><p>Reached an overall learning progress milestone of 80%.</p><span class="tag">Earned</span></article>
+      <article class="achievement"><div class="badge">🔒</div><h3>Course Master</h3><p>Complete ten courses to unlock this achievement.</p><span class="tag">Locked</span></article>
+      <article class="achievement"><div class="badge">🚀</div><h3>Academic Explorer</h3><p>Explore three academic programs to unlock this achievement.</p><span class="tag">Locked</span></article>
+    </section>
+  </main>
+  <footer>&copy; <span id="year"></span> Bonds University. Educational demonstration.</footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
