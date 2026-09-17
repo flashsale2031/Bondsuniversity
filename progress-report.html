@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Review your academic progress and course performance at Bonds University." />
+  <title>Progress Report | Bonds University</title>
+  <style>
+    :root { --navy:#102a43; --navy-deep:#0b1f33; --blue:#2563eb; --blue-dark:#1e40af; --pale-blue:#dbeafe; --light:#f4f7fb; --text:#243b53; --muted:#627d98; --white:#fff; --border:#e5edf5; --green:#147d64; --green-bg:#d9f5ec; --gold:#9a6700; --gold-bg:#fff4cc; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; background:var(--light); color:var(--text); line-height:1.6; }
+    a { color:inherit; }
+    .container { width:min(1120px,88%); margin:0 auto; }
+    header { color:var(--white); background:linear-gradient(135deg,var(--navy),#1e4e8c); }
+    nav { width:min(1120px,88%); margin:0 auto; padding:24px 0; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+    .brand { color:var(--white); text-decoration:none; font-size:1.35rem; font-weight:700; }
+    nav ul { display:flex; gap:18px; list-style:none; padding:0; margin:0; flex-wrap:wrap; }
+    nav a { color:var(--white); text-decoration:none; font-weight:600; }
+    nav a:hover, nav a:focus-visible { color:#bfdbfe; }
+    nav a[aria-current="page"] { border-bottom:2px solid var(--white); padding-bottom:3px; }
+    .hero { padding:38px 0 48px; }
+    .hero h1 { font-size:clamp(2rem,4vw,3rem); margin:0 0 8px; }
+    .hero p { color:#e6efff; margin:0; font-size:1.08rem; }
+    main { padding:42px 0 70px; }
+    .card { background:var(--white); border:1px solid var(--border); border-radius:15px; box-shadow:0 8px 24px rgba(16,42,67,.06); }
+    .report-head { padding:25px 28px; display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap; }
+    .report-head h2 { color:var(--navy); margin:0 0 4px; font-size:1.35rem; }
+    .report-head p { color:var(--muted); margin:0; }
+    .term { background:var(--pale-blue); color:var(--blue-dark); padding:8px 12px; border-radius:8px; font-weight:700; font-size:.9rem; }
+    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:15px; margin:22px 0 32px; }
+    .metric { padding:20px; }
+    .metric strong { display:block; color:var(--blue); font-size:1.9rem; line-height:1.2; }
+    .metric span { color:var(--muted); font-size:.88rem; }
+    .section-heading { color:var(--navy); font-size:1.5rem; margin:0 0 16px; }
+    .course-table { overflow:hidden; }
+    .table-row { display:grid; grid-template-columns:1.5fr .65fr .8fr .9fr; gap:15px; align-items:center; padding:17px 22px; border-top:1px solid var(--border); }
+    .table-row:first-child { border-top:0; }
+    .table-row.header { color:var(--muted); background:#f8fbff; font-size:.78rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+    .course-name strong { display:block; color:var(--navy); }
+    .course-name span { color:var(--muted); font-size:.84rem; }
+    .grade { color:var(--navy); font-size:1.2rem; font-weight:700; }
+    .result { display:inline-block; width:max-content; padding:3px 9px; border-radius:999px; background:var(--green-bg); color:var(--green); font-size:.76rem; font-weight:700; }
+    .result.review { background:var(--gold-bg); color:var(--gold); }
+    .progress-cell progress { width:100%; height:9px; accent-color:var(--blue); }
+    .progress-label { color:var(--muted); font-size:.8rem; margin-bottom:3px; }
+    .lower-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:32px; }
+    .panel { padding:24px; }
+    .panel h2 { color:var(--navy); font-size:1.25rem; margin:0 0 16px; }
+    .milestone { display:flex; gap:14px; padding:12px 0; border-top:1px solid var(--border); }
+    .milestone:first-of-type { border-top:0; padding-top:0; }
+    .milestone-icon { flex:0 0 30px; height:30px; display:grid; place-items:center; border-radius:50%; background:var(--green-bg); color:var(--green); font-weight:700; }
+    .milestone strong { display:block; color:var(--text); font-size:.94rem; }
+    .milestone span { color:var(--muted); font-size:.84rem; }
+    .standing { display:flex; align-items:center; gap:18px; margin-bottom:18px; }
+    .ring { width:92px; height:92px; display:grid; place-items:center; border-radius:50%; background:conic-gradient(var(--blue) 0 86%,#e7eef8 86% 100%); position:relative; }
+    .ring::after { content:""; position:absolute; inset:9px; border-radius:50%; background:var(--white); }
+    .ring strong { position:relative; z-index:1; color:var(--navy); font-size:1.35rem; }
+    .standing p { color:var(--muted); margin:0; }
+    .note { padding:14px; border-left:4px solid var(--blue); background:#eff6ff; color:var(--text); font-size:.9rem; }
+    .actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
+    .button { display:inline-block; padding:10px 16px; border-radius:9px; background:var(--blue); color:var(--white); text-decoration:none; font-weight:700; }
+    .button:hover, .button:focus-visible { background:var(--blue-dark); }
+    .button.alt { background:var(--pale-blue); color:var(--blue-dark); }
+    footer { background:var(--navy-deep); color:#d9e7f7; text-align:center; padding:25px 6%; }
+    @media (max-width:800px) { .metrics { grid-template-columns:repeat(2,1fr); } .lower-grid { grid-template-columns:1fr; } }
+    @media (max-width:620px) { nav { align-items:flex-start; } .table-row { grid-template-columns:1fr 1fr; gap:10px; } .table-row.header { display:none; } .course-name { grid-column:1 / -1; } .progress-cell { grid-column:1 / -1; } .report-head { align-items:flex-start; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="brand" href="index.html">Bonds University</a>
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="courses.html">Courses</a></li><li><a href="programs.html">Programs</a></li><li><a href="faculty.html">Faculty</a></li><li><a href="alumni.html">Alumni</a></li><li><a href="careers.html">Careers</a></li><li><a href="my-account.html">My Account</a></li><li><a href="progress-report.html" aria-current="page">Progress Report</a></li>
+      </ul>
+    </nav>
+    <section class="hero container">
+      <h1>Progress Report</h1>
+      <p>See how your work is adding up and celebrate the milestones along the way.</p>
+    </section>
+  </header>
+
+  <main class="container">
+    <section class="card report-head" aria-labelledby="report-title">
+      <div><h2 id="report-title">Alex Rivera’s academic summary</h2><p>Computer Science · Student ID BU-20481</p></div>
+      <span class="term">Fall 2026</span>
+    </section>
+
+    <section class="metrics" aria-label="Academic summary metrics">
+      <div class="card metric"><strong>3.72</strong><span>Term GPA</span></div>
+      <div class="card metric"><strong>3.64</strong><span>Cumulative GPA</span></div>
+      <div class="card metric"><strong>48</strong><span>Credits completed</span></div>
+      <div class="card metric"><strong>86%</strong><span>Degree progress</span></div>
+    </section>
+
+    <section aria-labelledby="performance-title">
+      <h2 class="section-heading" id="performance-title">Course performance</h2>
+      <div class="card course-table">
+        <div class="table-row header"><span>Course</span><span>Grade</span><span>Status</span><span>Progress</span></div>
+        <div class="table-row"><div class="course-name"><strong>Introduction to Algorithms</strong><span>CS 201 · 4 credits</span></div><span class="grade">A-</span><span class="result">On track</span><div class="progress-cell"><div class="progress-label">92%</div><progress value="92" max="100">92%</progress></div></div>
+        <div class="table-row"><div class="course-name"><strong>Foundations of Data Science</strong><span>CS 225 · 4 credits</span></div><span class="grade">B+</span><span class="result">On track</span><div class="progress-cell"><div class="progress-label">81%</div><progress value="81" max="100">81%</progress></div></div>
+        <div class="table-row"><div class="course-name"><strong>Designing for People</strong><span>DES 110 · 4 credits</span></div><span class="grade">A</span><span class="result">On track</span><div class="progress-cell"><div class="progress-label">85%</div><progress value="85" max="100">85%</progress></div></div>
+        <div class="table-row"><div class="course-name"><strong>Academic Writing Workshop</strong><span>WRIT 102 · 3 credits</span></div><span class="grade">B</span><span class="result review">Review due</span><div class="progress-cell"><div class="progress-label">68%</div><progress value="68" max="100">68%</progress></div></div>
+      </div>
+    </section>
+
+    <div class="lower-grid">
+      <section class="card panel" aria-labelledby="milestones-title">
+        <h2 id="milestones-title">Degree milestones</h2>
+        <div class="milestone"><div class="milestone-icon">✓</div><div><strong>Core foundations complete</strong><span>All first-year foundation requirements are complete.</span></div></div>
+        <div class="milestone"><div class="milestone-icon">✓</div><div><strong>48 of 120 credits earned</strong><span>You are on pace for your planned graduation date.</span></div></div>
+        <div class="milestone"><div class="milestone-icon">→</div><div><strong>Declare concentration</strong><span>Meet with your advisor before the spring term.</span></div></div>
+      </section>
+      <section class="card panel" aria-labelledby="standing-title">
+        <h2 id="standing-title">Academic standing</h2>
+        <div class="standing"><div class="ring" aria-label="86 percent degree progress"><strong>86%</strong></div><p><strong>Good standing</strong><br />Your current results meet the academic progress standard.</p></div>
+        <div class="note">Keep your momentum going. Completing the Academic Writing Workshop review will help protect your term average.</div>
+        <div class="actions"><a class="button" href="mailto:advisor@bondsuniversity.example?subject=Progress%20report%20review">Contact my advisor</a><a class="button alt" href="mailto:registrar@bondsuniversity.example?subject=Official%20progress%20report">Request a copy</a></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Bonds University. Progress report content for demonstration.</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
