@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore careers and join the Bonds University community." />
+  <title>Careers | Bonds University</title>
+  <style>
+    :root {
+      --navy: #102a43;
+      --navy-deep: #0b1f33;
+      --blue: #2563eb;
+      --blue-dark: #1e40af;
+      --pale-blue: #dbeafe;
+      --light: #f4f7fb;
+      --text: #243b53;
+      --muted: #627d98;
+      --white: #fff;
+      --border: #e5edf5;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .container { width: min(1100px, 88%); margin: 0 auto; }
+
+    header {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--navy), #1e4e8c);
+    }
+    nav {
+      width: min(1100px, 88%);
+      margin: 0 auto;
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    nav ul {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+    }
+    nav a { color: var(--white); text-decoration: none; font-weight: 600; }
+    nav a:hover, nav a:focus-visible { color: #bfdbfe; }
+    nav a[aria-current="page"] { border-bottom: 2px solid var(--white); padding-bottom: 3px; }
+
+    .hero { padding: 58px 0 74px; }
+    .eyebrow {
+      color: #bfdbfe;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .hero h1 { max-width: 720px; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.1; margin: 12px 0 18px; }
+    .hero p { max-width: 650px; margin: 0; color: #e6efff; font-size: 1.12rem; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      background: var(--blue);
+      color: var(--white);
+    }
+    .button:hover, .button:focus-visible { background: var(--blue-dark); }
+    .button.light { background: var(--white); color: var(--blue-dark); }
+    .button.light:hover, .button.light:focus-visible { background: var(--pale-blue); }
+
+    main { padding: 58px 0 70px; }
+    .section-heading { max-width: 700px; margin-bottom: 28px; }
+    .section-heading h2 { color: var(--navy); font-size: clamp(1.7rem, 3vw, 2.35rem); margin: 0 0 8px; }
+    .section-heading p { color: var(--muted); margin: 0; }
+    .jobs { display: grid; gap: 16px; }
+    .job {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 23px 25px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 8px 24px rgba(16, 42, 67, .06);
+    }
+    .job h3 { color: var(--navy); margin: 0 0 5px; font-size: 1.2rem; }
+    .job p { color: var(--muted); margin: 0; }
+    .job-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tag { background: var(--pale-blue); color: var(--blue-dark); border-radius: 999px; padding: 4px 10px; font-size: .82rem; font-weight: 700; }
+    .job .button { white-space: nowrap; padding: 10px 16px; }
+
+    .benefits-section { margin-top: 62px; }
+    .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .benefit { background: var(--white); border: 1px solid var(--border); border-radius: 15px; padding: 23px; }
+    .benefit-number { color: var(--blue); font-size: 1.8rem; font-weight: 700; }
+    .benefit h3 { color: var(--navy); margin: 7px 0; }
+    .benefit p { color: var(--muted); margin: 0; }
+
+    .process { margin-top: 62px; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
+    .step { border-top: 3px solid var(--blue); padding-top: 15px; }
+    .step strong { display: block; color: var(--navy); margin-bottom: 5px; }
+    .step span { color: var(--muted); }
+    .contact {
+      margin-top: 62px;
+      padding: 33px;
+      border-radius: 16px;
+      background: #eaf2ff;
+      text-align: center;
+    }
+    .contact h2 { color: var(--navy); margin: 0 0 8px; }
+    .contact p { color: var(--muted); margin: 0 0 20px; }
+    footer { background: var(--navy-deep); color: #d9e7f7; text-align: center; padding: 25px 6%; }
+
+    @media (max-width: 650px) {
+      nav { align-items: flex-start; }
+      .job { grid-template-columns: 1fr; }
+      .job .button { justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="brand" href="index.html">Bonds University</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="faculty.html">Faculty</a></li>
+        <li><a href="alumni.html">Alumni</a></li>
+        <li><a href="careers.html" aria-current="page">Careers</a></li>
+      </ul>
+    </nav>
+    <section class="hero container">
+      <span class="eyebrow">Make an impact through education</span>
+      <h1>Build what comes next with Bonds University.</h1>
+      <p>Join a collaborative community of educators, researchers, and professionals who help learners turn curiosity into opportunity.</p>
+      <div class="hero-actions">
+        <a class="button light" href="#open-roles">View open roles</a>
+        <a class="button" href="mailto:careers@bondsuniversity.example">Connect with our team</a>
+      </div>
+    </section>
+  </header>
+
+  <main class="container">
+    <section id="open-roles" aria-labelledby="roles-title">
+      <div class="section-heading">
+        <h2 id="roles-title">Open opportunities</h2>
+        <p>Explore roles where your expertise can support excellent teaching, meaningful research, and a welcoming student experience.</p>
+      </div>
+      <div class="jobs">
+        <article class="job">
+          <div>
+            <h3>Assistant Professor of Computer Science</h3>
+            <p>Teach undergraduate courses, mentor students, and contribute to an active research community.</p>
+            <div class="job-meta"><span class="tag">Faculty</span><span class="tag">Full time</span><span class="tag">On campus</span></div>
+          </div>
+          <a class="button" href="mailto:careers@bondsuniversity.example?subject=Assistant%20Professor%20of%20Computer%20Science">Learn more</a>
+        </article>
+        <article class="job">
+          <div>
+            <h3>Student Success Advisor</h3>
+            <p>Guide learners through academic planning, campus resources, and the next step in their journey.</p>
+            <div class="job-meta"><span class="tag">Student support</span><span class="tag">Full time</span><span class="tag">On campus</span></div>
+          </div>
+          <a class="button" href="mailto:careers@bondsuniversity.example?subject=Student%20Success%20Advisor">Learn more</a>
+        </article>
+        <article class="job">
+          <div>
+            <h3>Instructional Designer</h3>
+            <p>Partner with faculty to create engaging, accessible, and outcomes-focused learning experiences.</p>
+            <div class="job-meta"><span class="tag">Academic innovation</span><span class="tag">Full time</span><span class="tag">Hybrid</span></div>
+          </div>
+          <a class="button" href="mailto:careers@bondsuniversity.example?subject=Instructional%20Designer">Learn more</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="benefits-section" aria-labelledby="benefits-title">
+      <div class="section-heading">
+        <h2 id="benefits-title">A place to do your best work</h2>
+        <p>We invest in the people who make our university stronger every day.</p>
+      </div>
+      <div class="benefits">
+        <article class="benefit"><div class="benefit-number">01</div><h3>Keep learning</h3><p>Access professional development, workshops, and opportunities to grow your craft.</p></article>
+        <article class="benefit"><div class="benefit-number">02</div><h3>Feel supported</h3><p>Work with thoughtful colleagues in a culture grounded in respect, collaboration, and belonging.</p></article>
+        <article class="benefit"><div class="benefit-number">03</div><h3>Make a difference</h3><p>See your work create lasting impact for students, colleagues, and the wider community.</p></article>
+      </div>
+    </section>
+
+    <section class="process" aria-label="Our hiring process">
+      <div class="step"><strong>01. Apply</strong><span>Send us your resume and a brief introduction about your experience.</span></div>
+      <div class="step"><strong>02. Connect</strong><span>Meet the people you would work with and learn more about the role.</span></div>
+      <div class="step"><strong>03. Join us</strong><span>Receive a thoughtful welcome and begin making your contribution.</span></div>
+    </section>
+
+    <section class="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Don’t see the right role yet?</h2>
+      <p>We are always interested in meeting people who care about the future of education.</p>
+      <a class="button" href="mailto:careers@bondsuniversity.example?subject=Future%20opportunities">Introduce yourself</a>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Bonds University. Careers content for demonstration.</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
