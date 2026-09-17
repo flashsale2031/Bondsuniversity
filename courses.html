@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore courses at Bonds University." />
+  <title>Courses | Bonds University</title>
+  <style>
+    :root { font-family: Arial, sans-serif; color: #172033; background: #f4f7fb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { background: #172033; color: white; padding: 1.25rem 6%; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    header a { color: white; text-decoration: none; font-weight: 700; }
+    nav { display: flex; gap: 1rem; }
+    .hero { text-align: center; padding: 4rem 1.25rem 2rem; }
+    .hero h1 { margin: 0 0 .75rem; font-size: clamp(2rem, 5vw, 3.25rem); }
+    .hero p { color: #526078; max-width: 600px; margin: auto; line-height: 1.6; }
+    .tools { width: min(1100px, 90%); margin: 1.5rem auto; display: flex; gap: .75rem; flex-wrap: wrap; }
+    input, select { flex: 1 1 220px; padding: .9rem 1rem; border: 1px solid #d5dce8; border-radius: 10px; font: inherit; background: white; }
+    .grid { width: min(1100px, 90%); margin: 2rem auto 4rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+    .course { background: white; padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 28px rgba(23,32,51,.08); display: flex; flex-direction: column; }
+    .course span { color: #526078; font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .course h2 { margin: .6rem 0; font-size: 1.25rem; }
+    .course p { color: #526078; line-height: 1.5; flex: 1; }
+    .button { display: inline-block; margin-top: 1rem; padding: .75rem 1rem; border-radius: 9px; background: #2563eb; color: white; text-align: center; text-decoration: none; font-weight: 700; }
+    footer { text-align: center; padding: 2rem; color: #526078; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">BONDS UNIVERSITY</a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="courses.html" aria-current="page">Courses</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Explore Our Courses</h1>
+      <p>Build practical skills, expand your knowledge, and learn at your own pace with Bonds University.</p>
+    </section>
+
+    <div class="tools" aria-label="Course filters">
+      <input id="search" type="search" placeholder="Search courses..." aria-label="Search courses" />
+      <select id="category" aria-label="Filter by category">
+        <option value="all">All categories</option>
+        <option value="technology">Technology</option>
+        <option value="business">Business</option>
+        <option value="design">Design</option>
+      </select>
+    </div>
+
+    <section class="grid" id="courseGrid" aria-live="polite">
+      <article class="course" data-category="technology"><span>Technology</span><h2>Introduction to Web Development</h2><p>Learn the fundamentals of HTML, CSS, JavaScript, and responsive websites.</p><a class="button" href="#">View Course</a></article>
+      <article class="course" data-category="technology"><span>Technology</span><h2>JavaScript Programming</h2><p>Develop problem-solving skills and build interactive browser applications.</p><a class="button" href="#">View Course</a></article>
+      <article class="course" data-category="business"><span>Business</span><h2>Business Fundamentals</h2><p>Explore planning, operations, customer value, and essential business concepts.</p><a class="button" href="#">View Course</a></article>
+      <article class="course" data-category="business"><span>Business</span><h2>Digital Marketing</h2><p>Discover content strategy, audience research, branding, and online campaigns.</p><a class="button" href="#">View Course</a></article>
+      <article class="course" data-category="design"><span>Design</span><h2>Graphic Design Basics</h2><p>Study layout, typography, color, and visual communication principles.</p><a class="button" href="#">View Course</a></article>
+      <article class="course" data-category="design"><span>Design</span><h2>User Experience Design</h2><p>Learn user research, wireframing, prototyping, and usability fundamentals.</p><a class="button" href="#">View Course</a></article>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Bonds University. All rights reserved.</footer>
+
+  <script>
+    const search = document.getElementById('search');
+    const category = document.getElementById('category');
+    const courses = [...document.querySelectorAll('.course')];
+    function filterCourses() {
+      const term = search.value.toLowerCase().trim();
+      const selected = category.value;
+      courses.forEach(course => {
+        const matchesText = course.textContent.toLowerCase().includes(term);
+        const matchesCategory = selected === 'all' || course.dataset.category === selected;
+        course.hidden = !(matchesText && matchesCategory);
+      });
+    }
+    search.addEventListener('input', filterCourses);
+    category.addEventListener('change', filterCourses);
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
