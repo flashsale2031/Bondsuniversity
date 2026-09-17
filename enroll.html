@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enroll | Bonds University</title>
+  <style>
+    :root{--navy:#102a43;--blue:#2563eb;--light:#f4f7fb;--ink:#243b53;--muted:#627d98;--white:#fff}
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--ink);line-height:1.6}
+    header{background:var(--navy);color:white;padding:18px 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .brand{font-size:1.35rem;font-weight:700} nav a{color:white;text-decoration:none;margin:0 8px;font-size:.95rem}nav a:hover{text-decoration:underline}
+    .hero{background:linear-gradient(135deg,#102a43,#2563eb);color:white;text-align:center;padding:72px 20px}.hero h1{margin:0 0 12px;font-size:clamp(2rem,5vw,3.5rem)}.hero p{max-width:650px;margin:auto;font-size:1.1rem}
+    main{max-width:1100px;margin:40px auto;padding:0 20px;display:grid;grid-template-columns:1fr 1.2fr;gap:28px}.panel{background:white;border-radius:16px;padding:30px;box-shadow:0 10px 30px #102a4312}.panel h2{margin-top:0;color:var(--navy)}.benefits{padding-left:20px}.benefits li{margin:12px 0}
+    form{display:grid;gap:15px}label{font-weight:700;font-size:.92rem}input,select,textarea{width:100%;padding:12px;border:1px solid #bcccdc;border-radius:8px;font:inherit;margin-top:6px}textarea{min-height:110px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.check{display:flex;gap:10px;align-items:flex-start;font-weight:400}.check input{width:auto;margin-top:5px}.btn{border:0;border-radius:8px;padding:14px;background:var(--blue);color:white;font-size:1rem;font-weight:700;cursor:pointer}.btn:hover{background:#1d4ed8}.notice{display:none;background:#e3fcef;color:#146c43;padding:14px;border-radius:8px}
+    footer{text-align:center;padding:30px 20px;color:var(--muted)}@media(max-width:760px){main{grid-template-columns:1fr}.two{grid-template-columns:1fr}nav a{display:inline-block;margin:4px}}
+  </style>
+</head>
+<body>
+  <header><div class="brand">Bonds University</div><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="programs.html">Programs</a><a href="faculty.html">Faculty</a><a href="alumni.html">Alumni</a><a href="dictionary.html">Dictionary</a><a href="enroll.html">Enroll</a></nav></header>
+  <section class="hero"><h1>Begin Your Journey</h1><p>Take the next step toward your academic and professional goals. Complete the enrollment form to express your interest in Bonds University.</p></section>
+  <main>
+    <section class="panel"><h2>Why Enroll With Us?</h2><ul class="benefits"><li>Explore career-focused academic programs.</li><li>Learn through flexible and accessible resources.</li><li>Connect with faculty, peers, and alumni.</li><li>Build practical skills for your future.</li><li>Discover opportunities for lifelong learning.</li></ul><p><strong>Next step:</strong> Submit your information and our admissions team can review your interests and guide you through the process.</p></section>
+    <section class="panel"><h2>Enrollment Interest Form</h2><div id="success" class="notice" role="status">Thank you! Your enrollment interest has been recorded in this demonstration form. An admissions representative can follow up through your provided contact details.</div><form id="enrollmentForm"><div class="two"><div><label for="firstName">First Name</label><input id="firstName" name="firstName" required /></div><div><label for="lastName">Last Name</label><input id="lastName" name="lastName" required /></div></div><div><label for="email">Email Address</label><input id="email" name="email" type="email" required /></div><div><label for="phone">Phone Number</label><input id="phone" name="phone" type="tel" /></div><div><label for="program">Program of Interest</label><select id="program" name="program" required><option value="">Select a program</option><option>Business Administration</option><option>Computer Science</option><option>Artificial Intelligence</option><option>Digital Design</option><option>General Studies</option><option>Undecided</option></select></div><div><label for="start">Preferred Start Term</label><select id="start" name="start" required><option value="">Select a term</option><option>Spring</option><option>Summer</option><option>Fall</option><option>Winter</option></select></div><div><label for="message">Additional Information</label><textarea id="message" name="message" placeholder="Tell us about your goals or questions..."></textarea></div><label class="check"><input type="checkbox" required /> I confirm that the information provided is accurate.</label><button class="btn" type="submit">Submit Enrollment Interest</button></form></section>
+  </main>
+  <footer>&copy; <span id="year"></span> Bonds University. Educational demonstration website.</footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();document.getElementById('enrollmentForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('success').style.display='block';this.reset();});</script>
+</body>
+</html>
