@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Financial Aid Matching | Bonds University</title>
+<style>
+:root{--ruby:#980f2d;--ruby-dark:#65091f;--gold:#f5c451;--ink:#243247;--muted:#667085;--bg:#f7f8fb;--line:#e5e7eb;--ok:#147a4b;--warn:#9a6700}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Arial,sans-serif}header{background:linear-gradient(120deg,var(--ruby-dark),var(--ruby));color:#fff;padding:28px 7%}nav{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px}nav a{color:#fff;text-decoration:none;font-weight:700}main{max-width:1120px;margin:32px auto;padding:0 20px}.hero,.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 8px 24px #1822300d}.hero{border-top:6px solid var(--gold)}h1,h2,h3{margin-top:0;color:var(--ruby-dark)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px;margin:20px 0}.step{position:relative}.number{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ruby);color:#fff;font-weight:700;margin-bottom:10px}.tag{display:inline-block;border-radius:999px;padding:4px 10px;background:#fff4cf;color:var(--warn);font-size:13px;font-weight:700}.formula{background:#fff7dc;border:1px solid #f0d27a;padding:18px;border-radius:12px;font-weight:700}.checks{padding-left:0;list-style:none}.checks li{padding:9px 0;border-bottom:1px solid var(--line)}.checks li:before{content:'✓';color:var(--ok);font-weight:700;margin-right:10px}.notice{background:#fff8e6;border-left:4px solid var(--gold);padding:16px;border-radius:8px}.button{display:inline-block;background:var(--ruby);color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700}footer{text-align:center;padding:30px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><h1>Bonds University</h1><p>Financial Aid Matching & Accreditation Workflow</p><nav><a href="index.html">Home</a><a href="financial-aid.html">Financial Aid</a><a href="admissions.html">Admissions</a><a href="contact.html">Contact</a></nav></header>
+<main>
+<section class="hero"><span class="tag">Prototype • Compliance review required</span><h2>Automated 50/50 Student Funding</h2><p>This workflow is designed to help the university verify government financial-aid awards and calculate a matching institutional credit of the same verified amount, subject to eligibility, cost-of-attendance limits, funding rules, and authorized review.</p><div class="formula">Institutional match = verified eligible government aid × 1.00, subject to applicable limits and approvals.</div></section>
+<section class="grid">
+<article class="card step"><span class="number">1</span><h3>Verify the award</h3><p>Import award data only from an authorized government or approved aid-system source. Validate student identity, enrollment, term, award type, amount, and status.</p></article>
+<article class="card step"><span class="number">2</span><h3>Check eligibility</h3><p>Confirm enrollment, satisfactory academic progress, program eligibility, cost of attendance, duplicate funding, and any applicable federal, state, or institutional restrictions.</p></article>
+<article class="card step"><span class="number">3</span><h3>Calculate the match</h3><p>Calculate a provisional institutional credit equal to the verified eligible government amount. Apply caps and prevent over-awards before any posting.</p></article>
+<article class="card step"><span class="number">4</span><h3>Approve and audit</h3><p>Route exceptions to authorized financial-aid staff, record every decision, require separation of duties, and preserve a complete audit trail.</p></article>
+<article class="card step"><span class="number">5</span><h3>Credit the student</h3><p>After approval and reconciliation, post the institutional credit to the student ledger. Keep disbursement on hold when verification fails or documentation is incomplete.</p></article>
+<article class="card step"><span class="number">6</span><h3>Reconcile continuously</h3><p>Compare government records, university ledger entries, refunds, withdrawals, and adjustments. Flag mismatches and create correction tasks.</p></article>
+</section>
+<section class="card"><h2>Required control checks</h2><ul class="checks"><li>Government award source and timestamp are recorded.</li><li>Student consent, privacy, and access permissions are enforced.</li><li>Government and institutional funds are tracked separately.</li><li>Over-award, duplicate-award, and cost-of-attendance rules are checked.</li><li>Human review is required for exceptions, reversals, and refunds.</li><li>Accreditation, Title IV, state, tax, and institutional policies are reviewed before production use.</li></ul></section>
+<section class="card"><h2>Important implementation boundary</h2><div class="notice">This page is a planning prototype, not an accredited financial-aid system and does not move money or certify government compliance. A production implementation requires approved data integrations, security controls, legal and financial-aid review, documented institutional policy, testing, and authorization from the applicable agencies.</div><p style="margin-top:20px"><a class="button" href="contact.html">Request a compliance review</a></p></section>
+</main>
+<footer>&copy; <span id="year"></span> Bonds University • Financial Aid Services</footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
