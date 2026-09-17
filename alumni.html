@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Connect with the Bonds University alumni community." />
+  <title>Alumni | Bonds University</title>
+  <style>
+    :root{--navy:#102a43;--blue:#2563eb;--light:#f4f7fb;--text:#243b53;--muted:#627d98;--white:#fff}
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text);line-height:1.6}
+    header{background:linear-gradient(135deg,var(--navy),#1e4e8c);color:#fff;padding:24px 6%}
+    nav{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.brand{color:#fff;text-decoration:none;font-size:1.35rem;font-weight:700}
+    nav ul{display:flex;gap:18px;list-style:none;padding:0;margin:0;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;font-weight:600}
+    .hero{max-width:1100px;margin:auto;padding:55px 6%;text-align:center}.hero h1{font-size:clamp(2rem,5vw,3.3rem);margin:0 0 12px}.hero p{max-width:720px;margin:auto;color:#e6efff}
+    main{max-width:1100px;margin:auto;padding:40px 6% 65px}.intro{text-align:center;max-width:760px;margin:0 auto 35px}.intro h2{margin-bottom:10px}.intro p{color:var(--muted)}
+    .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:25px 0 42px}.button{display:inline-block;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700;background:var(--blue);color:#fff}.button.alt{background:#dbeafe;color:#1e40af}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}.card{background:#fff;border:1px solid #e5edf5;border-radius:16px;padding:24px;box-shadow:0 8px 24px rgba(16,42,67,.08)}
+    .card h3{margin:0 0 8px;color:var(--navy)}.card p{margin:0;color:var(--muted)}.number{font-size:2rem;font-weight:700;color:var(--blue);margin-bottom:5px}
+    .stories{margin-top:45px}.stories h2{text-align:center;margin-bottom:24px}.story{background:#fff;border-left:4px solid var(--blue);padding:20px 24px;border-radius:10px;margin-bottom:16px}.story strong{display:block;color:var(--navy)}
+    footer{text-align:center;padding:25px 6%;background:var(--navy);color:#d9e7f7}
+    @media(max-width:600px){nav{align-items:flex-start}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="brand" href="index.html">Bonds University</a>
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="courses.html">Courses</a></li><li><a href="programs.html">Programs</a></li><li><a href="faculty.html">Faculty</a></li><li><a href="alumni.html" aria-current="page">Alumni</a></li>
+      </ul>
+    </nav>
+    <section class="hero"><h1>Welcome, Alumni</h1><p>Stay connected, celebrate achievements, and continue building meaningful relationships across the Bonds University community.</p></section>
+  </header>
+
+  <main>
+    <section class="intro"><h2>One Community, Many Journeys</h2><p>Our alumni network is designed to support lifelong learning, professional connections, mentorship, and shared university pride.</p></section>
+    <div class="actions"><a class="button" href="mailto:alumni@bondsuniversity.example">Contact Alumni Relations</a><a class="button alt" href="mailto:alumni@bondsuniversity.example?subject=Alumni%20Update">Share an Update</a></div>
+
+    <section class="grid" aria-label="Alumni opportunities">
+      <article class="card"><div class="number">01</div><h3>Networking</h3><p>Connect with fellow graduates through professional events, online communities, and shared interests.</p></article>
+      <article class="card"><div class="number">02</div><h3>Mentorship</h3><p>Offer guidance to students or seek advice from alumni with experience in your field.</p></article>
+      <article class="card"><div class="number">03</div><h3>Lifelong Learning</h3><p>Discover continuing education resources, workshops, and opportunities to develop new skills.</p></article>
+      <article class="card"><div class="number">04</div><h3>Community Events</h3><p>Participate in reunions, alumni gatherings, volunteer projects, and campus activities.</p></article>
+    </section>
+
+    <section class="stories"><h2>Alumni Highlights</h2>
+      <div class="story"><strong>Career Connections</strong><span>Build relationships that encourage collaboration, professional growth, and new opportunities.</span></div>
+      <div class="story"><strong>Giving Back</strong><span>Support the next generation through mentorship, knowledge sharing, and community involvement.</span></div>
+      <div class="story"><strong>Keep in Touch</strong><span>Share your milestones and stay informed about university news and upcoming events.</span></div>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Bonds University. Sample alumni content for demonstration.</footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
