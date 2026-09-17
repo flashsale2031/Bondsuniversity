@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Manage your Bonds University account, courses, and student resources." />
+  <title>My Account | Bonds University</title>
+  <style>
+    :root {
+      --navy: #102a43;
+      --navy-deep: #0b1f33;
+      --blue: #2563eb;
+      --blue-dark: #1e40af;
+      --pale-blue: #dbeafe;
+      --light: #f4f7fb;
+      --text: #243b53;
+      --muted: #627d98;
+      --white: #fff;
+      --border: #e5edf5;
+      --green: #147d64;
+      --green-bg: #d9f5ec;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: var(--light); color: var(--text); line-height: 1.6; }
+    a { color: inherit; }
+    .container { width: min(1120px, 88%); margin: 0 auto; }
+
+    header { color: var(--white); background: linear-gradient(135deg, var(--navy), #1e4e8c); }
+    nav { width: min(1120px, 88%); margin: 0 auto; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .brand { color: var(--white); text-decoration: none; font-size: 1.35rem; font-weight: 700; }
+    nav ul { display: flex; gap: 18px; list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+    nav a { color: var(--white); text-decoration: none; font-weight: 600; }
+    nav a:hover, nav a:focus-visible { color: #bfdbfe; }
+    nav a[aria-current="page"] { border-bottom: 2px solid var(--white); padding-bottom: 3px; }
+
+    .account-hero { padding: 38px 0 48px; }
+    .account-hero h1 { font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 8px; }
+    .account-hero p { color: #e6efff; margin: 0; font-size: 1.08rem; }
+    main { padding: 42px 0 70px; }
+    .account-layout { display: grid; grid-template-columns: 280px 1fr; gap: 25px; align-items: start; }
+    .card { background: var(--white); border: 1px solid var(--border); border-radius: 15px; box-shadow: 0 8px 24px rgba(16, 42, 67, .06); }
+
+    .profile-card { padding: 25px; text-align: center; }
+    .avatar { width: 78px; height: 78px; margin: 0 auto 14px; display: grid; place-items: center; border-radius: 50%; background: var(--pale-blue); color: var(--blue-dark); font-size: 1.65rem; font-weight: 700; }
+    .profile-card h2 { color: var(--navy); font-size: 1.25rem; margin: 0 0 3px; }
+    .profile-card p { color: var(--muted); margin: 0 0 20px; font-size: .92rem; }
+    .side-links { border-top: 1px solid var(--border); padding-top: 12px; text-align: left; }
+    .side-links a { display: block; padding: 9px 10px; border-radius: 8px; color: var(--text); text-decoration: none; font-weight: 600; }
+    .side-links a:hover, .side-links a:focus-visible, .side-links a.active { color: var(--blue-dark); background: #eff6ff; }
+
+    .content h2 { color: var(--navy); font-size: 1.55rem; margin: 0 0 18px; }
+    .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+    .summary-item { padding: 18px; }
+    .summary-item strong { display: block; color: var(--blue); font-size: 1.65rem; line-height: 1.2; }
+    .summary-item span { color: var(--muted); font-size: .9rem; }
+
+    .section { margin-top: 28px; }
+    .course-list { display: grid; gap: 14px; }
+    .course { padding: 20px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; }
+    .course h3 { color: var(--navy); margin: 0 0 4px; font-size: 1.08rem; }
+    .course p { color: var(--muted); margin: 0; font-size: .92rem; }
+    .progress-wrap { min-width: 160px; }
+    .progress-label { display: flex; justify-content: space-between; color: var(--muted); font-size: .8rem; margin-bottom: 5px; }
+    progress { width: 100%; height: 9px; accent-color: var(--blue); }
+    .status { display: inline-block; margin-top: 9px; padding: 3px 9px; border-radius: 999px; background: var(--green-bg); color: var(--green); font-size: .76rem; font-weight: 700; }
+
+    .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .action-card, .notice-card { padding: 22px; }
+    .action-card h3, .notice-card h3 { color: var(--navy); margin: 0 0 12px; }
+    .action-list { display: grid; gap: 9px; }
+    .action-list a { color: var(--blue-dark); text-decoration: none; font-weight: 600; }
+    .action-list a:hover, .action-list a:focus-visible { text-decoration: underline; }
+    .notice { padding: 11px 0; border-top: 1px solid var(--border); }
+    .notice:first-of-type { border-top: 0; padding-top: 0; }
+    .notice strong { display: block; color: var(--text); font-size: .92rem; }
+    .notice span { color: var(--muted); font-size: .84rem; }
+
+    footer { background: var(--navy-deep); color: #d9e7f7; text-align: center; padding: 25px 6%; }
+    @media (max-width: 800px) { .account-layout { grid-template-columns: 1fr; } .profile-card { text-align: left; display: grid; grid-template-columns: auto 1fr; column-gap: 16px; align-items: center; } .avatar { grid-row: span 2; } .profile-card p { margin-bottom: 0; } .side-links { grid-column: 1 / -1; } }
+    @media (max-width: 620px) { nav { align-items: flex-start; } .summary, .bottom-grid { grid-template-columns: 1fr; } .course { grid-template-columns: 1fr; } .progress-wrap { min-width: 0; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="brand" href="index.html">Bonds University</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="faculty.html">Faculty</a></li>
+        <li><a href="alumni.html">Alumni</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="my-account.html" aria-current="page">My Account</a></li>
+      </ul>
+    </nav>
+    <section class="account-hero container">
+      <h1>My Account</h1>
+      <p>Welcome back, Alex. Keep track of your learning and stay connected to campus.</p>
+    </section>
+  </header>
+
+  <main class="container">
+    <div class="account-layout">
+      <aside class="card profile-card" aria-label="Account profile">
+        <div class="avatar" aria-hidden="true">AR</div>
+        <div>
+          <h2>Alex Rivera</h2>
+          <p>Computer Science · Class of 2028</p>
+        </div>
+        <div class="side-links">
+          <a class="active" href="#overview" aria-current="page">Overview</a>
+          <a href="#courses">My courses</a>
+          <a href="#resources">Resources</a>
+          <a href="mailto:studentservices@bondsuniversity.example">Get support</a>
+        </div>
+      </aside>
+
+      <section class="content" id="overview" aria-labelledby="overview-title">
+        <h2 id="overview-title">Your learning overview</h2>
+        <div class="summary">
+          <div class="card summary-item"><strong>3</strong><span>Active courses</span></div>
+          <div class="card summary-item"><strong>12</strong><span>Credits this term</span></div>
+          <div class="card summary-item"><strong>86%</strong><span>Average progress</span></div>
+        </div>
+
+        <section class="section" id="courses" aria-labelledby="courses-title">
+          <h2 id="courses-title">Current courses</h2>
+          <div class="course-list">
+            <article class="card course">
+              <div><h3>Introduction to Algorithms</h3><p>CS 201 · Professor Morgan · Next class: Tuesday, 10:00 AM</p><span class="status">In progress</span></div>
+              <div class="progress-wrap"><div class="progress-label"><span>Progress</span><strong>92%</strong></div><progress value="92" max="100">92%</progress></div>
+            </article>
+            <article class="card course">
+              <div><h3>Foundations of Data Science</h3><p>CS 225 · Professor Chen · Next class: Wednesday, 1:00 PM</p><span class="status">In progress</span></div>
+              <div class="progress-wrap"><div class="progress-label"><span>Progress</span><strong>81%</strong></div><progress value="81" max="100">81%</progress></div>
+            </article>
+            <article class="card course">
+              <div><h3>Designing for People</h3><p>DES 110 · Professor Patel · Next class: Thursday, 2:30 PM</p><span class="status">In progress</span></div>
+              <div class="progress-wrap"><div class="progress-label"><span>Progress</span><strong>85%</strong></div><progress value="85" max="100">85%</progress></div>
+            </article>
+          </div>
+        </section>
+
+        <div class="bottom-grid section" id="resources">
+          <section class="card action-card" aria-labelledby="actions-title">
+            <h3 id="actions-title">Quick actions</h3>
+            <div class="action-list">
+              <a href="mailto:registrar@bondsuniversity.example?subject=Transcript%20request">Request an official transcript →</a>
+              <a href="mailto:studentservices@bondsuniversity.example?subject=Academic%20advising">Schedule academic advising →</a>
+              <a href="mailto:library@bondsuniversity.example">Visit the digital library →</a>
+            </div>
+          </section>
+          <section class="card notice-card" aria-labelledby="notices-title">
+            <h3 id="notices-title">Latest updates</h3>
+            <div class="notice"><strong>Fall registration opens soon</strong><span>Review course options before October 4.</span></div>
+            <div class="notice"><strong>Library hours expanded</strong><span>Study spaces are now open until 10 PM.</span></div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Bonds University. Account content for demonstration.</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
