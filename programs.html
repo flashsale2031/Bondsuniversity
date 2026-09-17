@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore degree programs at Bonds University." />
+  <title>Degree Programs | Bonds University</title>
+  <style>
+    :root { font-family: Arial, sans-serif; color: #172033; background: #f4f7fb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { background: #172033; color: #fff; padding: 1.2rem 6%; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    header a { color: #fff; text-decoration: none; font-weight: 700; }
+    nav { display: flex; gap: 1rem; }
+    .hero { text-align: center; padding: 4rem 1.25rem 2rem; }
+    .hero h1 { margin: 0 0 .75rem; font-size: clamp(2rem, 5vw, 3.2rem); }
+    .hero p { max-width: 680px; margin: auto; color: #526078; line-height: 1.6; }
+    .filters { width: min(1100px, 90%); margin: 1.5rem auto; display: flex; gap: .75rem; flex-wrap: wrap; }
+    input, select { flex: 1 1 220px; padding: .9rem 1rem; border: 1px solid #d5dce8; border-radius: 10px; font: inherit; background: #fff; }
+    .grid { width: min(1100px, 90%); margin: 2rem auto 4rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .program { background: #fff; padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 28px rgba(23,32,51,.08); display: flex; flex-direction: column; }
+    .program .level { color: #2563eb; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .program h2 { margin: .65rem 0; font-size: 1.3rem; }
+    .program p { color: #526078; line-height: 1.5; flex: 1; }
+    .details { display: flex; gap: .5rem; flex-wrap: wrap; color: #526078; font-size: .9rem; margin-top: .5rem; }
+    .button { display: inline-block; margin-top: 1.1rem; padding: .75rem 1rem; border-radius: 9px; background: #2563eb; color: #fff; text-align: center; text-decoration: none; font-weight: 700; }
+    footer { text-align: center; padding: 2rem; color: #526078; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">BONDS UNIVERSITY</a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="programs.html" aria-current="page">Programs</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Degree Programs</h1>
+      <p>Discover academic pathways designed to help you build knowledge, develop career-ready skills, and pursue your goals.</p>
+    </section>
+
+    <div class="filters" aria-label="Program filters">
+      <input id="search" type="search" placeholder="Search degree programs..." aria-label="Search degree programs" />
+      <select id="level" aria-label="Filter by degree level">
+        <option value="all">All degree levels</option>
+        <option value="associate">Associate</option>
+        <option value="bachelor">Bachelor's</option>
+        <option value="master">Master's</option>
+      </select>
+    </div>
+
+    <section class="grid" id="programGrid" aria-live="polite">
+      <article class="program" data-level="bachelor"><span class="level">Bachelor's Degree</span><h2>Bachelor of Science in Computer Science</h2><p>Study programming, algorithms, software development, and computer systems.</p><div class="details"><span>4 years</span><span>•</span><span>Technology</span></div><a class="button" href="#">Explore Program</a></article>
+      <article class="program" data-level="bachelor"><span class="level">Bachelor's Degree</span><h2>Bachelor of Business Administration</h2><p>Build a foundation in management, finance, marketing, and organizational strategy.</p><div class="details"><span>4 years</span><span>•</span><span>Business</span></div><a class="button" href="#">Explore Program</a></article>
+      <article class="program" data-level="bachelor"><span class="level">Bachelor's Degree</span><h2>Bachelor of Arts in Digital Design</h2><p>Develop creative and technical skills in visual design, interaction, and digital media.</p><div class="details"><span>4 years</span><span>•</span><span>Design</span></div><a class="button" href="#">Explore Program</a></article>
+      <article class="program" data-level="associate"><span class="level">Associate Degree</span><h2>Associate of Applied Technology</h2><p>Gain practical technology knowledge and prepare for further study or entry-level roles.</p><div class="details"><span>2 years</span><span>•</span><span>Technology</span></div><a class="button" href="#">Explore Program</a></article>
+      <article class="program" data-level="master"><span class="level">Master's Degree</span><h2>Master of Business Leadership</h2><p>Explore advanced leadership, strategic planning, and organizational decision-making.</p><div class="details"><span>2 years</span><span>•</span><span>Business</span></div><a class="button" href="#">Explore Program</a></article>
+      <article class="program" data-level="master"><span class="level">Master's Degree</span><h2>Master of Applied Data Science</h2><p>Learn data analysis, statistical reasoning, and responsible data-driven problem solving.</p><div class="details"><span>2 years</span><span>•</span><span>Technology</span></div><a class="button" href="#">Explore Program</a></article>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Bonds University. All rights reserved.</footer>
+
+  <script>
+    const search = document.getElementById('search');
+    const level = document.getElementById('level');
+    const programs = [...document.querySelectorAll('.program')];
+    function filterPrograms() {
+      const term = search.value.toLowerCase().trim();
+      const selected = level.value;
+      programs.forEach(program => {
+        const matchesText = program.textContent.toLowerCase().includes(term);
+        const matchesLevel = selected === 'all' || program.dataset.level === selected;
+        program.hidden = !(matchesText && matchesLevel);
+      });
+    }
+    search.addEventListener('input', filterPrograms);
+    level.addEventListener('change', filterPrograms);
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
